@@ -19,7 +19,7 @@ export default defineConfig({
   workers:1,
   reporter: 'html',
   use: {
-    baseURL: process.env.BASE_URL ?? 'http://localhost:3000',
+    baseURL: process.env.BASE_URL ?? 'https://victorycenter.online',
     trace: 'on-first-retry',
     headless: false,
     viewport: { width: 1280, height: 720 },
@@ -70,7 +70,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
+  //   url: 'https://victorycenter.online',
   //   reuseExistingServer: !process.env.CI,
   // },
 });

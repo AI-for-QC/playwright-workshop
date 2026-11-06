@@ -2,7 +2,7 @@
 
 - **Сценарій:** [TM-01-create-team-member.md](TM-01-create-team-member.md)
 - **Стек:** TypeScript + @playwright/test
-- **Джерело DOM:** живий застосунок `http://localhost:3000/admin-panel/team`, Chromium, 1280×720, знято 2026-11-06. Збіги кожного локатора пораховано скриптом у цьому DOM.
+- **Джерело DOM:** живий застосунок `https://victorycenter.online/admin-panel/team`, Chromium, 1280×720, знято 2026-11-06. Збіги кожного локатора пораховано скриптом у цьому DOM.
 - **Маршрути:** після входу застосунок перенаправляє на `/admin-panel`; сторінка «Команда» — `/admin-panel/team`.
 
 ## Контейнер модалки

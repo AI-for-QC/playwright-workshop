@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
-  await page.goto('http://localhost:3000/login');
+  await page.goto('https://victorycenter.online/login');
   await expect(page.getByRole('heading')).toContainText('Вхід до системи');
   await page.getByRole('textbox', { name: 'Електронна пошта' }).click();
   await page.getByRole('textbox', { name: 'Електронна пошта' }).fill('admin@example.com');
@@ -14,7 +14,7 @@ test('test', async ({ page }) => {
   await page.getByRole('button', { name: 'Увійти' }).click();
   await page.getByRole('button', { name: 'Увійти' }).click();
   await page.getByRole('button', { name: 'Увійти' }).click();
-  await page.goto('http://localhost:3000/admin-panel');
+  await page.goto('https://victorycenter.online/admin-panel');
   await expect(page.locator('#root')).toContainText('Вітаємо в панелі адміністратора');
   await page.getByRole('link', { name: 'Команда' }).click();
   await page.getByRole('button', { name: 'Додати в команду' }).click();

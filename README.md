@@ -2,7 +2,7 @@
 
 Інструкція для початківців: як записати сценарій, перетворити запис на тест і запускати його.
 
-Застосунок має вже працювати за адресою з `.env` (`BASE_URL`, інакше `http://localhost:3000`). Цей репозиторій сам сервер не піднімає.
+Застосунок уже працює на [https://victorycenter.online/login](https://victorycenter.online/login). Адреса береться з `.env` (`BASE_URL`), інакше з конфігу: `https://victorycenter.online`. Цей репозиторій сам сервер не піднімає.
 
 ## Перед першим запуском
 
@@ -14,7 +14,7 @@ npx playwright install
 У `.env` у корені проєкту мають бути:
 
 ```
-BASE_URL=http://localhost:3000
+BASE_URL=https://victorycenter.online
 ADMIN_EMAIL=...
 ADMIN_PASSWORD=...
 ```
@@ -39,7 +39,7 @@ ADMIN_PASSWORD=...
 2. Запустіть запис. Файл кладіть у `tests/records/`, не поруч із готовими тестами:
 
 ```powershell
-npx playwright codegen http://localhost:3000/login --output=tests/records/my-scenario.spec.ts --target=playwright-test
+npx playwright codegen https://victorycenter.online/login --output=tests/records/my-scenario.spec.ts --target=playwright-test
 ```
 
 3. У вікні браузера виконайте лише ті кроки, які входять у цей кейс. Зайве (відкрили не ту сторінку, клікнули двічі) теж потрапить у файл.
@@ -57,7 +57,7 @@ npx playwright codegen http://localhost:3000/login --output=tests/records/my-sce
 
 Типові знахідки в записі:
 
-- `page.goto('http://localhost:3000/login')` замість `page.goto('/login')`. Базова адреса вже задана в конфігу.
+- `page.goto('https://victorycenter.online/login')` замість `page.goto('/login')`. Базова адреса вже задана в конфігу.
 - Логін і пароль прямо в коді.
 - `getByRole('heading')` без імені. Другий заголовок на сторінці зламає тест.
 - `locator('#root')`. Це контейнер фреймворку, а не елемент, який бачить людина.
@@ -102,7 +102,7 @@ npx playwright codegen http://localhost:3000/login --output=tests/records/my-sce
 **Звірити локатори з живою сторінкою**
 
 ```text
-Застосунок відкритий на http://localhost:3000. Пройди шлях із tests/records/pc-1.spec.ts і для кожного локатора порахуй, скільки елементів він знаходить до відкриття модалки і після.
+Застосунок відкритий на https://victorycenter.online/login. Пройди шлях із tests/records/pc-1.spec.ts і для кожного локатора порахуй, скільки елементів він знаходить до відкриття модалки і після.
 Запропонуй локатор, який лишається одним елементом. Не використовуй .first(), .nth() і force: true.
 ```
 
