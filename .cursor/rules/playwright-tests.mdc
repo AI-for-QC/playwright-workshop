@@ -1,0 +1,35 @@
+---
+description: How to write Playwright tests in this project
+alwaysApply: true
+---
+
+# Playwright tests
+
+Write tests in `tests/<feature>.spec.ts`. One test covers one user behavior. The title states the action and the expected result. `baseURL` is already set: open relative paths (`/login`), not absolute URLs. A test must not depend on `slowMo`, headed mode, or the worker count.
+
+## Locators
+
+Prefer, in order: `getByRole` → `getByLabel` → `getByPlaceholder` → `getByText` → `getByTestId`. Use CSS or XPath only when no user-facing locator exists. Narrow a locator with `filter({ hasText })` or `filter({ has })`. Do not bypass strict mode with `.first()`, `.nth()`, or `{ force: true }`.
+
+## Assertions
+
+Use only web-first assertions that auto-retry: `await expect(locator).toBeVisible()`. Do not use `waitForTimeout`, `networkidle`, `page.$`, element handles, or `expect(await locator.isVisible())`.
+
+## Isolation
+
+Each test is independent and safe to run in parallel. Test data is unique. Set up preconditions that are not the subject of the test through the `request` fixture, not by clicking through the UI. Reuse login via `storageState` and a setup project; keep a UI login only in the login test itself.
+
+## Structure
+
+For a screen used more than once, extract a fixture (`test.extend`) and a page class: locators and actions live there, `expect` stays in the test. Do not add a page object for a one-off scenario.
+
+```ts
+test('shows an error when the password is empty', async ({ page }) => {
+  await page.goto('/login');
+  await page.getByLabel('Email').fill('user@example.com');
+  await page.getByRole('button', { name: 'Sign in' }).click();
+  await expect(page.getByRole('alert')).toContainText('Password is required');
+});
+```
+
+Do not leave `test.only`, `page.pause()`, an empty `catch`, or secrets in the code. Use `test.skip` and `test.fixme` only with a reason.
